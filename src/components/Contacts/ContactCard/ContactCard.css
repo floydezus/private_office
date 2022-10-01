@@ -1,0 +1,21 @@
+.contact {
+    position: relative;
+}
+
+.contact * {
+    cursor: pointer;
+}
+
+.contact__section {
+    padding: 5px;
+}
+
+.contact__subtitle + .contact__subtitle {
+    margin-top: 15px;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
