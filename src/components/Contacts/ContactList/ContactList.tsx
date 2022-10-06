@@ -17,14 +17,14 @@ const ContactList: FC<IProps> = ({query}) => {
   const { contacts } = useSelector((state: RootState) => state.contacts);
   const dispatch = useDispatch();
   const clickOnContact = useCallback((contact: ContactDto) => {
-    dispatch(contactsActions.setDialogOpening({isOpen: true, selectedContact: contact}))
-  }, []);
+    dispatch(contactsActions.setDialogOpening({ isOpen: true, selectedContact: contact }))
+  }, [dispatch]);
 
   const clickOnDelete = useCallback((contact: ContactDto) => {
-    dispatch(contactsActions.setDialogDeleting({isOpen: true, selectedContact: contact }))
-  }, []);
+    dispatch(contactsActions.setDialogDeleting({ isOpen: true, selectedContact: contact }))
+  }, [dispatch]);
 
-  const soughtContacts = contacts.filter((contact) => {
+  const searchedContacts = contacts.filter((contact) => {
     if (!query) {
       return true;
     }
@@ -36,9 +36,9 @@ const ContactList: FC<IProps> = ({query}) => {
   });
 
   return (
-      soughtContacts.length > 0 ?
+      searchedContacts.length > 0 ?
       <div className={'contact-list'}>
-        {soughtContacts
+        {searchedContacts
             .map((contact) =>
                 <ContactCard
                   key={contact.id}

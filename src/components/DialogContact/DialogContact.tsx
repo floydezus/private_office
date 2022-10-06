@@ -3,9 +3,10 @@ import './DialogContact.css';
 import {ContactDto} from "../../common/types";
 import {Button, Classes, Dialog, FormGroup, InputGroup, Intent} from "@blueprintjs/core";
 import {useDispatch} from "react-redux";
-import {actions as contactsActions } from "../../slices/contactsSlice";
+import {actions as contactsActions, createContact, updateContact} from "../../slices/contactsSlice";
 import {IconNames} from "@blueprintjs/icons";
 import {AppToaster} from "../Common/CommonToaster";
+import {AppDispatch} from "../../slices/store";
 
 type DialogProps = {
   isOpen: boolean;
@@ -22,7 +23,7 @@ const initialData: ContactDto = {
 
 const DialogContact: FC<DialogProps> = (props) => {
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const [data, setData] = useState<ContactDto>(props.contact ?? initialData);
 
@@ -41,18 +42,17 @@ const DialogContact: FC<DialogProps> = (props) => {
 
   const handleSubmit = () => {
     if (props.contact) {
-      dispatch(contactsActions.editContact(
-          {... data,
-          callback: () => AppToaster.show({message: 'Contact successful edited!', intent: Intent.SUCCESS })
-          }
+      dispatch(updateContact(
+          {
+            data,
+            callback: () => {
+              window.scrollTo(0,0);
+              AppToaster.show({ message: 'Contact successful edited!', intent: Intent.SUCCESS })
+            }
+      }))
 
-          ))
     } else {
-      dispatch(contactsActions.addContact(
-          { ...data,
-          callback: () => AppToaster.show({message: 'Contact successful added!', intent: Intent.SUCCESS })
-          }
-          ))
+      dispatch(createContact({data: data}));
     }
     dispatch(contactsActions.setDialogOpening({isOpen: false}));
 

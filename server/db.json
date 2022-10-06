@@ -1,0 +1,25 @@
+{
+  "contacts": [
+    {
+      "id": "contact-1",
+      "email": "example@mail.ru",
+      "firstName": "Ivan",
+      "lastName": "Sidorov",
+      "phone": ""
+    },
+    {
+      "id": "contact-2",
+      "email": "example@yandex.ru",
+      "firstName": "Maria",
+      "lastName": "Vinogradova",
+      "phone": "+9603195239"
+    },
+    {
+      "firstName": "Александр",
+      "lastName": "Токарев",
+      "email": "wenire5618@tagbert.com",
+      "phone": "",
+      "id": "nAHgRN5"
+    }
+  ]
+}

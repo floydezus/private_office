@@ -12,14 +12,14 @@ import {RootState} from "../../slices/rootReducer";
 import CommonDialog from "../Common/CommonDialog";
 import {IconNames} from "@blueprintjs/icons";
 import {Intent} from "@blueprintjs/core";
-import {actions as contactsActions} from "../../slices/contactsSlice";
-import {AppToaster} from "../Common/CommonToaster";
+import {actions as contactsActions, deleteContact} from "../../slices/contactsSlice";
+import {AppDispatch} from "../../slices/store";
 
 
 function App() {
 
   const { isCreateOpen, selectedContact, isDeleteOpen } = useSelector((state: RootState) => state.contacts);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   return (
       <Fragment>
@@ -41,10 +41,7 @@ function App() {
             dialogTitle={'Delete contact'}
             dialogText={'Are you sure?'}
             intent={Intent.DANGER}
-            confirmFunction={() => dispatch(contactsActions.deleteContact(
-                {id: selectedContact.id!,
-                callback: () => AppToaster.show({message: 'Contact is deleted', intent: Intent.SUCCESS })},
-            ))}
+            confirmFunction={() => dispatch(deleteContact({id: selectedContact.id!}))}
             dismissFunction={() => dispatch(contactsActions.setDialogDeleting({isOpen: false }))}
         />
         }
