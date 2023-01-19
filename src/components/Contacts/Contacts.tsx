@@ -18,7 +18,9 @@ function Contacts() {
 
   useEffect(() => {
     dispatch(fetchAllContacts());
-  }, []);
+  }, [dispatch]);
+
+  console.log(process.env.REACT_APP_SITE_TITLE);
 
   const handleChangeQuery = (event: React.FormEvent<HTMLInputElement>) => setQueryString(event.currentTarget.value);
 

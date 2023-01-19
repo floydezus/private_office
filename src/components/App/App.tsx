@@ -14,6 +14,7 @@ import {IconNames} from "@blueprintjs/icons";
 import {Intent} from "@blueprintjs/core";
 import {actions as contactsActions, deleteContact} from "../../slices/contactsSlice";
 import {AppDispatch} from "../../slices/store";
+import Login from "../Login/Login";
 
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
   return (
       <Fragment>
         <Routes>
+          <Route path={'/login'}
+                 element={<Login />}
+          />
           <Route path={'/'}
                  element={<Contacts />}
           />

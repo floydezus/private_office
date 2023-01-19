@@ -1,5 +1,9 @@
 import {SERVER_HOST} from "./constants";
 
+/**
+ * Это мои эндпоинты
+ * @param string тут никаких парам
+ */
 const endpoints = {
 
   getContactsPath: () =>`${SERVER_HOST}/contacts`,

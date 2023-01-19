@@ -2,18 +2,18 @@ import {
   Navigate,
   Outlet,
 } from 'react-router-dom';
-import { FC } from "react";
+import {FC, ReactChildren} from "react";
 
 type ProtectedRouteProps = {
   isAuth: boolean,
   redirectPath?: string
-  children: any
+  children: JSX.Element
 }
 
 const ProtectedRoute: FC<ProtectedRouteProps> = ({
   isAuth,
   redirectPath = '/login',
-  children,
+  children
 }) => {
   if (!isAuth) {
     return <Navigate to={redirectPath} replace />;
